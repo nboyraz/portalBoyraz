@@ -1,0 +1,78 @@
+html{
+    height: 100%;
+}
+body{
+    padding-top: 50px;
+    height: 100%; 
+}
+#MainContainer{
+    min-height: 100%; 
+    position: relative;
+    background: linear-gradient(to right, #F2FAFA , #E6F5F5); 
+}
+#Content{
+    padding-bottom: 280px;
+}
+#footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 280px;
+  background: 
+  /* color overlay */ 
+    linear-gradient(
+      #435B63, 
+      #090A0A
+    )
+}
+#LeftSidebarContainer{
+    padding-top: 50px;
+}
+#LeftSidebar{    
+    background: 
+  /* color overlay */ 
+    linear-gradient(
+      #14181A, 
+      #3C484D
+    )
+}
+#RightSidebarContainer{
+    padding-top: 0px;
+    height: 200px;
+}
+.RightSidebarItem{
+    color: #071626;
+}
+.starter-template{
+    padding: 40px 15px;
+}
+form{
+    width: 500px;
+    max-width: 500px;
+}
+.alert{
+    width: 400px;
+    max-width: 400px;
+}
+#logo{
+    color: #f79811;
+    font: 25px bold;
+}
+@media (max-width: 1268px) {
+    .container{
+        max-width: 1100px;
+    }
+}
+@media (max-width: 1400px) {
+    .container{
+        max-width: 1300px;
+    }
+}
+.mainSideBars{
+    padding-top: 50px;
+}
+.footertext {
+  color: #ffffff;
+}
+
