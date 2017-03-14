@@ -5,7 +5,7 @@ class Message extends Model{
             return false;
         }
 
-        $id = (int)$id;
+        /*$id = (int)$id;
         $name = $this->db->escape($data['name']);
         $email = $this->db->escape($data['email']);
         $message = $this->db->escape($data['message']);
@@ -19,7 +19,8 @@ class Message extends Model{
                     set NAME='{$name}', EMAIL='{$email}', MESSAGE='{$message}' 
                     where ID={$id}";
         }
-        return $this->db->query($sql);
+        return $this->db->query($sql);*/
+        return true;//commentlendigi icin eklendi
     }
 }
 ?>
