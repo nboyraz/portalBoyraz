@@ -40,8 +40,16 @@
             return $this->language;
         }
 
+        public function GetUsableUri($uri){
+            $pre_folder = Config::get('site_prefix_folder');
+            $occurance=1;
+            $res = str_replace($pre_folder,'',$uri,$occurance);
+            $res = urldecode(trim($res,'/'));
+            return $res;
+        }
+
         public function __construct($uri){
-            $this->uri = urldecode(trim($uri,'/'));
+            $this->uri = $this->GetUsableUri($uri);
             $routes = Config::get('routes');
             $this->route = Config::get('default_route');
             $this->method_prefix = isset($routes[$this->route]) ? $routes[$this->route] : '';
@@ -57,7 +65,7 @@
 
             if(count($path_parts)){
                 //!!! portal boyraz on klasorunden
-                array_shift($path_parts);
+                //array_shift($path_parts);
 
                 //get route or language in first element
                 if(in_array(strtolower(current($path_parts)), array_keys($routes))){
