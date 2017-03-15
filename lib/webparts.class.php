@@ -10,15 +10,15 @@
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span> 
                             </button>
-                            <a class="navbar-brand" href="/portalboyrazv2/"><span id="logo"><?=Config::get('site_name')?></span></a>
+                            <a class="navbar-brand" href="<?php echo Config::get('site_domain'); ?>"><span id="logo"><?=Config::get('site_name')?></span></a>
                         </div>
                         <div id="myNavbar" class="collapse navbar-collapse">
                             <ul class="nav navbar-nav">
-                                <li><a <?php if(App::getRouter()->getController()=='Mains'){ echo 'class="active"'; }?> href="/portalboyrazv2/mains/">Ana Sayfa</a></li>
-                                <li><a <?php if(App::getRouter()->getController()=='Photos'){ echo 'class="active"'; }?> href="/portalboyrazv2/photos/">Resimler</a></li>
-                                <li><a <?php if(App::getRouter()->getController()=='Ftrees'){ echo 'class="active"'; }?> href="/portalboyrazv2/ftrees/">Soy Ağacı</a></li>
-                                <li><a <?php if(App::getRouter()->getController()=='Events'){ echo 'class="active"'; }?> href="/portalboyrazv2/events/">Duyurular</a></li>
-                                <li><a <?php if(App::getRouter()->getController()=='contacts'){ echo 'class="active"'; }?> href="/portalboyrazv2/contacts/">İletişim</a></li>
+                                <li><a <?php if(App::getRouter()->getController()=='Mains'){ echo 'class="active"'; }?> href="<?php echo Config::get('site_domain'); ?>mains/">Ana Sayfa</a></li>
+                                <li><a <?php if(App::getRouter()->getController()=='Photos'){ echo 'class="active"'; }?> href="<?php echo Config::get('site_domain'); ?>photos/">Resimler</a></li>
+                                <li><a <?php if(App::getRouter()->getController()=='Ftrees'){ echo 'class="active"'; }?> href="<?php echo Config::get('site_domain'); ?>ftrees/">Soy Ağacı</a></li>
+                                <li><a <?php if(App::getRouter()->getController()=='Events'){ echo 'class="active"'; }?> href="<?php echo Config::get('site_domain'); ?>events/">Duyurular</a></li>
+                                <li><a <?php if(App::getRouter()->getController()=='contacts'){ echo 'class="active"'; }?> href="<?php echo Config::get('site_domain'); ?>contacts/">İletişim</a></li>
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
                               <li><a href="#"><span class="glyphicon glyphicon-user"></span> Üye Olun</a></li>
@@ -76,7 +76,7 @@
                         <br>
                         <div class="col-md-4">
                             <center>
-                            <img src="//127.0.0.1/portalboyrazv2/webroot/img/footer_developer.png" class="img-circle" alt="the-brains">
+                            <img src="<?php echo Config::get('site_domain'); ?>webroot/img/footer_developer.png" class="img-circle" alt="the-brains">
                             <br>
                             <h4 class="footertext">Yazılım Geliştirici</h4>
                             <p class="footertext">Necip Fazıl Boyraz<br>
@@ -84,7 +84,7 @@
                         </div>
                         <div class="col-md-4">
                             <center>
-                            <img src="//127.0.0.1/portalboyrazv2/webroot/img/footer_designer.png" class="img-circle" alt="...">
+                            <img src="<?php echo Config::get('site_domain'); ?>webroot/img/footer_designer.png" class="img-circle" alt="...">
                             <br>
                             <h4 class="footertext">Site Tasarım</h4>
                             <p class="footertext">Necip Fazıl Boyraz<br>
@@ -92,7 +92,7 @@
                         </div>
                         <div class="col-md-4">
                             <center>
-                            <img src="//127.0.0.1/portalboyrazv2/webroot/img/footer_moderator.png" class="img-circle" alt="...">
+                            <img src="<?php echo Config::get('site_domain'); ?>webroot/img/footer_moderator.png" class="img-circle" alt="...">
                             <br>
                             <h4 class="footertext">Site Moderatorler</h4>
                             <p class="footertext">Necip Fazıl Boyraz<br>

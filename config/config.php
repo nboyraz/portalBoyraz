@@ -1,5 +1,6 @@
 <?php
     Config::set('site_name', 'portalBoyraz');
+    Config::set('site_domain', 'https://secret-waters-15848.herokuapp.com/');
     Config::set('languages', array('en','tr'));
 
     //routes. route name => method prefix
