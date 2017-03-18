@@ -16,7 +16,7 @@
                             <ul class="nav navbar-nav">
                                 <li><a <?php if(App::getRouter()->getController()=='Mains'){ echo 'class="active"'; }?> href="<?php echo Config::get('site_domain'); ?>mains/">Ana Sayfa</a></li>
                                 <li><a <?php if(App::getRouter()->getController()=='Photos'){ echo 'class="active"'; }?> href="<?php echo Config::get('site_domain'); ?>photos/">Resimler</a></li>
-                                <li><a <?php if(App::getRouter()->getController()=='Ftrees'){ echo 'class="active"'; }?> href="<?php echo Config::get('site_domain'); ?>ftrees/">Soy Ağacı</a></li>
+                                <li><a <?php if(App::getRouter()->getController()=='Ftrees'){ echo 'class="active"'; }?> href="<?php echo Config::get('site_domain'); ?>ftrees?vmod=large">Soy Ağacı</a></li>
                                 <li><a <?php if(App::getRouter()->getController()=='Events'){ echo 'class="active"'; }?> href="<?php echo Config::get('site_domain'); ?>events/">Duyurular</a></li>
                                 <li><a <?php if(App::getRouter()->getController()=='contacts'){ echo 'class="active"'; }?> href="<?php echo Config::get('site_domain'); ?>contacts/">İletişim</a></li>
                             </ul>
@@ -104,6 +104,51 @@
                     </div>
                 </div>
             </div>            
+            <?php return  ob_get_clean();
+        }
+
+        public static function getStandartContent($content){
+            ob_start(); ?>
+            <div id="Content">
+                <div class="container">
+                    <div class="row">
+                        <?php echo Webparts::getLeftSiteMenu(); ?>
+                        <div class="col-sm-7 main">
+                            <div class="starter-template">
+
+                                <?php if(Session::hasFlash()){ ?>
+                                <div class="alert alert-info" role="alert">
+                                    <?php Session::flash(); ?>
+                                </div>
+                                <?php } ?>
+                                <?php echo $content; ?>
+                            </div>
+                        </div> 
+                        <?php echo Webparts::getRigthSiteBar(); ?>
+                    </div> 
+                </div> 
+            </div>
+            <?php return  ob_get_clean();
+        }
+
+        public static function getLargeContent($content){
+            ob_start(); ?>
+            <div id="Content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-12 main">
+                            <div class="starter-template">
+                                <?php if(Session::hasFlash()){ ?>
+                                <div class="alert alert-info" role="alert">
+                                    <?php Session::flash(); ?>
+                                </div>
+                                <?php } ?>
+                                <?php echo $content; ?>
+                            </div>
+                        </div> 
+                    </div> 
+                </div> 
+            </div>
             <?php return  ob_get_clean();
         }
     }

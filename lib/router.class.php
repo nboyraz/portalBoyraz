@@ -11,6 +11,7 @@
         protected $route;
         protected $method_prefix;
         protected $language;
+        protected $view_mode;
 
         public function getUri(){
             return $this->uri;
@@ -40,6 +41,10 @@
             return $this->language;
         }
 
+        public function getViewMode(){
+            return $this->view_mode;
+        }
+
         public function GetUsableUri($uri){
             $pre_folder = Config::get('site_prefix_folder');
             $occurance=1;
@@ -64,9 +69,6 @@
             //echo "<pre>";print_r($path_parts);
 
             if(count($path_parts)){
-                //!!! portal boyraz on klasorunden
-                //array_shift($path_parts);
-
                 //get route or language in first element
                 if(in_array(strtolower(current($path_parts)), array_keys($routes))){
                     $this->route = strtolower(current($path_parts));
@@ -90,6 +92,17 @@
 
                 //get getParams - all the rest
                 $this->params = $path_parts;
+            }
+            //ek goruntuleme modlari uride ? sonraki kisim
+            if(count($uri_parts) > 1){
+                $modes = explode('&',$uri_parts[1]);
+                for($i=0;$i<count($modes);$i++){
+                    $values = explode('=',$modes[$i]);
+                    if(count($values)>1 && $values[0] == 'vmod' && in_array($this->controller,Config::get('view_mode_pages'))){
+                        $this->view_mode = $values[1];
+                        break;
+                    }
+                }
             }
         }
     }
