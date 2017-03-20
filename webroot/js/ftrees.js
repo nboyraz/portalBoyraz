@@ -1,16 +1,33 @@
 $( document ).ready(function() {
-    var sampleSVG = d3.select("#viz")
-        .append("svg")
-        .attr("width", 100)
-        .attr("height", 100);    
-
-    sampleSVG.append("circle")
-        .style("stroke", "gray")
-        .style("fill", "white")
-        .attr("r", 40)
-        .attr("cx", 50)
-        .attr("cy", 50)
-        .on("mouseover", function(){d3.select(this).style("fill", "aliceblue");})
-        .on("mouseout", function(){d3.select(this).style("fill", "white");});
+    var treeData = [
+        {
+            "name" : "Yusuf Boyraz",
+            "children" : [
+                {
+                    "name" : "Ozkan Boyraz",
+                    "children" : [{"name" : "Zeynep Azra Boyraz"},{"name" : "Beyza Ayse Boyraz"},{"name" : "Melike Boyraz"}]
+                },
+                {
+                    "name" : "Ozdal Boyraz",
+                    "children" : [{"name" : "Fatima Kevser Boyraz"},{"name" : "Amine Boyraz"}]
+                },
+                {
+                    "name" : "Mustafa Boyraz",
+                    "children" : [{"name" : "Yusuf Enes Boyraz"}]
+                },
+                {
+                    "name" : "Abuseyf Boyraz",
+                    "children" : [{"name" : "Ahmet Hamza Boyraz"}]
+                },
+                {
+                    "name" : "Yildiz Ozhan",
+                    "children" : [{"name" : "Merve Ozhan"},{"name" : "Emirhan Ozhan"},{"name" : "xxxx xxxx"}]
+                },
+                {
+                    "name" : "Necip Fazil Boyraz"
+                }
+            ]
+        }
+    ];
 });
 

@@ -6,7 +6,7 @@ class FtreesController extends Controller{
     }
 
     public function index(){
-        
+
     }
 }
 ?>

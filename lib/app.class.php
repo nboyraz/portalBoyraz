@@ -31,5 +31,23 @@
             $layout_view_object = new View(compact('content'),$layout_path);
             echo $layout_view_object->render();
         }
+
+        public static function routeAjaxCall($uri){
+            self::$router = new Router($uri);
+            //self::$db = DB::getInstance();//test icin commentlendi tekrar acilacak
+            Lang::load(self::$router->getLanguage());
+
+            $controller_class = ucfirst(self::$router->getController()).'Controller';
+            $controller_method = strtolower(self::$router->getMethodPrefix().self::$router->getAction()); 
+
+            //calling controller
+            $controller_object = new $controller_class();
+            if(method_exists($controller_object, $controller_method)){
+                $resValue = $controller_object->$controller_method();
+                if($resValue){
+                    return $resValue;
+                }
+            }
+        }
     }
 ?>
