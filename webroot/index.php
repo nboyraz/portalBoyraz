@@ -5,13 +5,9 @@ define('VIEWS_PATH',ROOT.DS.'views');
 
 require_once (ROOT.DS.'lib'.DS.'init.php');
 
-if($_POST){ 
-    /*isset($_POST['method_type']) && $_POST['method_type'] == "ajax" && isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest'*/
-    /*$ajax_res = App::routeAjaxCall($_SERVER['REQUEST_URI']);
-    $myfile = fopen("newfile.txt", "w") or die("Unable to open file!");
-    fwrite($myfile,'sonuc:'.$ajax_res);
-    fclose($myfile);
-    echo $ajax_res;*/
+if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['method_type']) && $_POST['method_type'] == "ajax"){ 
+    $ajax_res = App::routeAjaxCall($_SERVER['REQUEST_URI']);
+    echo json_encode($ajax_res);
 }
 else{
     App::run($_SERVER['REQUEST_URI']);
