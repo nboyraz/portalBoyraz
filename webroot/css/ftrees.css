@@ -1,3 +1,31 @@
 #ftree_container{
-    color: red;
+    padding:0px;
+    margin:0px;
+    font: 13px sans-serif bold;
 }
+.node {
+  cursor: pointer;
+}
+
+.node circle {
+  fill: #fff;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}
+
+.node text {
+  font: 10px sans-serif;
+}
+
+.link {
+  fill: none;
+  stroke: #5ca7d6;
+  stroke-width: 1.5px;
+}
+
+.border {
+  fill: none;
+  shape-rendering: crispEdges;
+  stroke: #aaa;
+}
+

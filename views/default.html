@@ -15,11 +15,21 @@
     <body>
         <div id="MainContainer">
 
-            <?php echo Webparts::getStandartHeader(); ?>
-
-            <?php if(App::getRouter()->getViewMode() == 'large'){echo Webparts::getLargeContent($data['content']);} else{echo Webparts::getStandartContent($data['content']);} ?>
-
-            <?php echo Webparts::getStandartFooter(); ?>
+            <?php
+                echo Webparts::getStandartHeader();
+                if(App::getRouter()->getViewMode() == 'full'){
+                    echo Webparts::getFullContent($data['content']);
+                }
+                else{
+                    if(App::getRouter()->getViewMode() == 'large'){
+                        echo Webparts::getLargeContent($data['content']);
+                    }
+                    else{
+                        echo Webparts::getStandartContent($data['content']);
+                    }
+                    echo Webparts::getStandartFooter();
+                }
+            ?>
 
         </div>        
     </body>

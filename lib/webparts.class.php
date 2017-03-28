@@ -2,7 +2,7 @@
     class Webparts{
         public static function getStandartHeader(){
             ob_start(); ?>
-           <nav class="navbar navbar-inverse navbar-fixed-top">
+           <nav class="navbar navbar-inverse navbar-fixed-top" id="MainNavBar">
                     <div class="container">
                         <div class="navbar-header">
                             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -16,7 +16,7 @@
                             <ul class="nav navbar-nav">
                                 <li><a <?php if(App::getRouter()->getController()=='Mains'){ echo 'class="active"'; }?> href="<?php echo Config::get('site_domain'); ?>mains/">Ana Sayfa</a></li>
                                 <li><a <?php if(App::getRouter()->getController()=='Photos'){ echo 'class="active"'; }?> href="<?php echo Config::get('site_domain'); ?>photos/">Resimler</a></li>
-                                <li><a <?php if(App::getRouter()->getController()=='Ftrees'){ echo 'class="active"'; }?> href="<?php echo Config::get('site_domain'); ?>ftrees?vmod=large">Soy Ağacı</a></li>
+                                <li><a <?php if(App::getRouter()->getController()=='Ftrees'){ echo 'class="active"'; }?> href="<?php echo Config::get('site_domain'); ?>ftrees?vmod=full">Soy Ağacı</a></li>
                                 <li><a <?php if(App::getRouter()->getController()=='Events'){ echo 'class="active"'; }?> href="<?php echo Config::get('site_domain'); ?>events/">Duyurular</a></li>
                                 <li><a <?php if(App::getRouter()->getController()=='contacts'){ echo 'class="active"'; }?> href="<?php echo Config::get('site_domain'); ?>contacts/">İletişim</a></li>
                             </ul>
@@ -115,7 +115,6 @@
                         <?php echo Webparts::getLeftSiteMenu(); ?>
                         <div class="col-sm-7 main">
                             <div class="starter-template">
-
                                 <?php if(Session::hasFlash()){ ?>
                                 <div class="alert alert-info" role="alert">
                                     <?php Session::flash(); ?>
@@ -150,6 +149,10 @@
                 </div> 
             </div>
             <?php return  ob_get_clean();
+        }
+
+        public static function getFullContent($content){
+            echo $content;
         }
     }
 ?>

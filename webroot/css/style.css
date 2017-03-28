@@ -8,15 +8,16 @@ body{
 #MainContainer{
     min-height: 100%; 
     position: relative;
-    background: linear-gradient(to right, #F2FAFA , #E6F5F5); 
+    /*background: linear-gradient(to right, #F2FAFA , #E6F5F5); */
+    background: linear-gradient(to right, #d5eced , #9fbcbd);
 }
 #Content{
-    padding-bottom: 280px;
+    padding-bottom: 280px;    
 }
 #footer {
   position: absolute;
   bottom: 0;
-  width: 100%;
+  width: 100%; 
   /* Set the fixed height of the footer here */
   height: 280px;
   background: 
