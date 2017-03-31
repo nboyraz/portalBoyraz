@@ -1,56 +1,82 @@
 var root = 
-        {
-            "name": "Mustafa Boyraz",
-            "children":[
-                {
-                    "name": "Ali Boyraz",
-                    "children": [
-                        {
-                            "name": "Ayşe Boyraz",
-                            "children": [
-                                {
-                                    "name": "Mehmet Boyraz",
-                                    "children":[
-                                        {"name": "Ebru Boyraz"},
-                                        {"name": "Ersin Boyraz", "children":[{"name":"Azra Boyraz"},{"name":"Arda Boyraz"}]}
-                                    ]
-                                },
-                                {"name": "Tahsin Boyraz"},
-                                {"name": "I. Hakki Boyraz"},
-                                {"name": "Ilhan Boyraz"}
-                            ]
-                        },
-                        {
-                            "name": "Yusuf Boyraz",
-                            "children": [
-                                {"name": "Ozkan Boyraz", "children":[{"name":"Azra Boyraz"},{"name":"Ayse Boyraz"},{"name":"Melike Boyraz"}]},
-                                {"name": "Ozdal Boyraz"},
-                                {"name": "Mustafa Boyraz"},
-                                {"name": "Abuseyf Boyraz"},
-                                {"name": "Yildiz Ozhan", "children":[{"name":"Merve Ozhan"},{"name":"Emirhan Ozhan"},{"name":"Hakan Ozhan"}]},
-                                {"name": "Necip Fazil Boyraz"}
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "name":"Kucuk Aga",
-                    "children": [
-                        {"name": "Mahmut Boyraz"},
-                        {"name": "Seyfettin Boyraz"}
-                    ]
-                }
-            ]
-        };
+    {
+        "name": "Bilinmeyen Boyraz",
+        "children":[
+            {
+                "name": "Mustafa Boyraz",
+                "children":[
+                    {
+                        "name": "Ali Boyraz",
+                        "children": [
+                            {
+                                "name": "Ayşe Boyraz",
+                                "children": [
+                                    {
+                                        "name": "Mehmet Boyraz",
+                                        "children":[
+                                            {"name": "Ebru Boyraz"},
+                                            {"name": "Ersin Boyraz", "children":[{"name":"Azra Boyraz"},{"name":"Arda Boyraz"}]}
+                                        ]
+                                    },
+                                    {"name": "Tahsin Boyraz"},
+                                    {"name": "I. Hakki Boyraz"},
+                                    {"name": "Ilhan Boyraz"}
+                                ]
+                            },
+                            {
+                                "name": "Yusuf Boyraz",
+                                "children": [
+                                    {"name": "Ozkan Boyraz", "children":[{"name":"Azra Boyraz"},{"name":"Ayse Boyraz"},{"name":"Melike Boyraz"}]},
+                                    {"name": "Ozdal Boyraz"},
+                                    {"name": "Mustafa Boyraz"},
+                                    {"name": "Abuseyf Boyraz"},
+                                    {"name": "Yildiz Ozhan", "children":[{"name":"Merve Ozhan"},{"name":"Emirhan Ozhan"},{"name":"Hakan Ozhan"}]},
+                                    {"name": "Necip Fazil Boyraz"}
+                                ]
+                            },
+                            {"name": "Fatma Boyraz"},
+                            {"name": "Elif Boyraz"},
+                            {"name": "Havva Ozhan", "children":[{"name":"Sevda Ozhan"},{"name":"Kagan Ozhan", "children":[{"name":"Merve Ozhan"},{"name":"Emirhan Ozhan"},{"name":"Hakan Ozhan"}]},{"name":"Melehat Ozhan"}]}
+                        ]
+                    },
+                    {
+                        "name":"Kucuk Aga",
+                        "children": [
+                            {"name": "Mahmut Boyraz", "children":[{"name":"Emine Boyraz"},{"name":"Mustafa Boyraz"},{"name":"Nuray Boyraz"},{"name":"Nurhan Boyraz"},{"name":"Munevver Boyraz"},{"name":"Hamit Boyraz"},{"name":"Sait Boyraz"},{"name":"Dilara Boyraz"}]},
+                            {"name": "Seyfettin Boyraz", "children":[{"name":"Mehmet Boyraz"},{"name":"Kahraman Boyraz"},{"name":"Nursel Boyraz"},{"name":"Mustafa Boyraz"}]}
+                        ]
+                    }
+                ]
+            },
+            {"name": "Mudur Ahmet Efendi"}
+        ]
+    };
 
 $( document ).ready(function() {
-    var margin = {top: 40, right: 20, bottom: 40, left: 20},
-    width = $(window).width() - margin.left - margin.right,
-    height = ($(window).height() - $("#MainNavBar").height()-25) - margin.top - margin.bottom;
-    //var _width=width,_height=height;
+    var margin = {top: 60, right: 20, bottom: 40, left: 20},
+    width,
+    height,
+    _width,
+    _height;
+    calculateInitialSizes();
+
+    function calculateInitialSizes(){
+        width = $(window).width() - margin.left - margin.right;
+        height = ($(window).height() - $("#MainNavBar").height()) - margin.top - margin.bottom;
+        _width = width;
+        _height = height;
+        $("#ftree_container").css("height",(height + margin.top + margin.bottom)+"px");//vertical scroll icin
+    }
+
+    window.addEventListener('resize', function(event){
+        calculateInitialSizes();
+        setSize();
+        update(root);
+    });
 
     var i = 0,
-        duration = 1500;
+        duration = 1500,
+        levelChildrenCounter = [];
 
     var tree = d3.layout.tree()
         .size([width, height]);
@@ -72,9 +98,49 @@ $( document ).ready(function() {
         }
     }
 
-    //root.y0 = width/2;
     root.children.forEach(collapse);
     update(root);    
+
+    function getTotalDepth(source,level){
+        var _res = 1;
+        if(source.children){
+            var _depths = [];
+            for(var i=0;i<source.children.length;i++){
+                _depths.push(getTotalDepth(source.children[i],level+1));
+            }
+            _res = Math.max.apply(null, _depths) + 1;
+        }
+        if(levelChildrenCounter[level+'.'])
+            levelChildrenCounter[level+'.'] = levelChildrenCounter[level+'.'] + 1;
+        else
+            levelChildrenCounter[level+'.'] = 1;
+        return _res;
+    }
+
+    function setSize(){
+        levelChildrenCounter = [];
+        var maxDepth = getTotalDepth(root,1); 
+        var _tmpLevelElms = [];
+        for(var key in levelChildrenCounter) {
+            _tmpLevelElms.push(levelChildrenCounter[key]);
+        }       
+        var maxSize = Math.max.apply(null, _tmpLevelElms);
+        if(height < (maxDepth * 100)){
+            _height = maxDepth * 100;
+        }
+        else{
+            _height = height;
+        }
+        if(width < (maxSize * 90)){
+            _width = maxSize * 90;
+        }
+        else{
+            _width = width;
+        }
+        d3.select("svg").attr("height", _height + margin.top + margin.bottom)
+            .attr("width", _width + margin.right + margin.left);
+        tree.size([_width, _height]);
+    }
 
     // Toggle children on click.
     function click(d) {
@@ -85,13 +151,12 @@ $( document ).ready(function() {
             d.children = d._children;
             d._children = null;
         }
-
-        //$("#MainContainer").width($("#MainContainer").width()+100);
-        //$("#ftree_container").height($("#ftree_container").height()+100);
-        //_width += 100;
-        //_height += 100;
-        //tree.size([_width,_height]);
+        setSize();
         update(d);
+    }
+
+    function clickName(){
+        alert("isme cift tiklayinca panel acilacak!!!");
     }
 
     function update(source) {
@@ -121,7 +186,8 @@ $( document ).ready(function() {
             .attr("dy", ".35em")
             .attr("text-anchor", "middle")
             .text(function(d) { return d.name; })
-            .style("fill-opacity", 1e-6);
+            .style("fill-opacity", 1e-6)
+            .on("dblclick", clickName);
 
         // Transition nodes to their new position.
         var nodeUpdate = node.transition()
