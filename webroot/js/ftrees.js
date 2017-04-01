@@ -76,6 +76,7 @@ $( document ).ready(function() {
 
     var i = 0,
         duration = 1500,
+        duration_short = 750,
         levelChildrenCounter = [];
 
     var tree = d3.layout.tree()
@@ -89,8 +90,21 @@ $( document ).ready(function() {
         .attr("height", height + margin.top + margin.bottom)
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    
+    var defs = svg.append('svg:defs');
+    defs.append("svg:pattern")
+    .attr("id", "blank_avatar")
+    .attr("width", 30)
+    .attr("height", 30)
+    .append("svg:image")
+    .attr("xlink:href", $("html").attr("site_domain") + 'webroot/img/neco.png')
+    .attr("width", 30)
+    .attr("height", 30)
+    .attr("x", 0)
+    .attr("y", 0);
 
     function collapse(d) {
+
         if (d.children) {
         d._children = d.children;
         d._children.forEach(collapse);
@@ -153,10 +167,31 @@ $( document ).ready(function() {
         }
         setSize();
         update(d);
+        //bazen circle renkli kalabiliyor
+        var idcircle = "#circle"+d.id;
+        d3.select(idcircle).style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
     }
 
-    function clickName(){
+    function clickName(d){
         alert("isme cift tiklayinca panel acilacak!!!");
+    }
+
+    function HoverNode(d){
+        var idcircle = "#circle"+d.id;
+        d3.select(idcircle).transition().duration(duration_short).attr("r","15");
+        try{
+            d3.select(idcircle).style("fill", "url(#blank_avatar)");
+        }
+        catch(err){}
+    }
+
+    function UnHoverNode(d){
+        var idcircle = "#circle"+d.id;
+        d3.select(idcircle).transition().duration(duration_short).attr("r","4.5");
+        try{
+            d3.select(idcircle).style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
+        }
+        catch(err){}
     }
 
     function update(source) {
@@ -175,11 +210,14 @@ $( document ).ready(function() {
         var nodeEnter = node.enter().append("g")
             .attr("class", "node")
             .attr("transform", function(d) { return "translate(" + source.x0 + "," + source.y0 + ")"; })
-            .on("click", click);
+            .on("click", click)
+            .on("mouseover", HoverNode)
+            .on("mouseout", UnHoverNode);
 
         nodeEnter.append("circle")
             .attr("r", 1e-6)
-            .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
+            .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; })
+            .attr("id",function(d){ return "circle"+d.id; });
 
         nodeEnter.append("text")
             .attr("y", function(d) { return d.children || d._children ? -18 : 18; })
@@ -246,83 +284,3 @@ $( document ).ready(function() {
         });
     }
 });
-/************************************************************************************/
-/************************************************************************************/
-/************************************************************************************/
-/*
-var root = 
-            {
-                "name": "Ali Boyraz",
-                "children": [
-                    {
-                        "name": "Ayşe Boyraz",
-                        "children": [
-                            {"name": "Mehmet Boyraz"},
-                            {"name": "Tahsin Boyraz"},
-                            {"name": "I. Hakki Boyraz"},
-                            {"name": "Ilhan Boyraz"}
-                        ]
-                    },
-                    {
-                        "name": "Yusuf Boyraz",
-                        "children": [
-                            {"name": "Ozkan Boyraz"},
-                            {"name": "Ozdal Boyraz"},
-                            {"name": "Mustafa Boyraz"},
-                            {"name": "Abuseyf Boyraz"},
-                            {"name": "Yildiz Ozhan"},
-                            {"name": "Necip Fazil Boyraz"}
-                        ]
-                    }
-                ]
-            };
-$( document ).ready(function() {
-    var margin = {top: 40, right: 20, bottom: 40, left: 20},
-    width = $("#ftree_container").width() - margin.left - margin.right,
-    height = ($(window).height() - $("#MainNavBar").height() - $("#footer").height()-80) - margin.top - margin.bottom;
-    var orientations = {
-        "BOYRAZ SOYAĞACI": {
-            size: [width, height],
-            x: function(d) { return d.x; },
-            y: function(d) { return d.y; }
-        }
-    };
-
-    var svg = d3.select("#ftree_container").selectAll("svg")
-        .data(d3.entries(orientations))
-    .enter().append("svg")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
-    .append("g")
-        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-    svg.append("text")
-        .attr("x", 6)
-        .attr("y", 6)
-        .attr("dy", ".71em")
-        .text(function(d) { return d.key; });
-
-    svg.each(function(orientation) {
-        var svg = d3.select(this),
-        o = orientation.value;
-        // Compute the layout.
-        var tree = d3.layout.tree().size(o.size),//d3.layout.tree().size(o.size)
-        nodes = tree.nodes(root),
-        links = tree.links(nodes);
-        // Create the link lines.
-        svg.selectAll(".link")
-        .data(links)
-        .enter().append("path")
-        .attr("class", "link")
-        .attr("d", d3.svg.diagonal().projection(function(d) { return [o.x(d), o.y(d)]; }));
-        // Create the node circles.
-        svg.selectAll(".node")
-        .data(nodes)
-        .enter().append("circle")
-        .attr("class", "node")
-        .attr("r", 4.5)
-        .attr("cx", o.x)
-        .attr("cy", o.y);
-    });
-});
-*/
