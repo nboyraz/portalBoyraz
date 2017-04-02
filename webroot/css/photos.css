@@ -1,0 +1,15 @@
+.folder_name{
+    font:23px bold;
+    color:#104759;
+}
+.folder_owner{
+    font:15px bold;
+    color:#104759;
+}
+.image_desc{
+    font:13px bold;
+    color:#104759;
+}
+.folder_div{
+    padding-top: 10px;
+}

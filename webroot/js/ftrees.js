@@ -34,7 +34,7 @@ var root =
                                     {"name": "Necip Fazil Boyraz"}
                                 ]
                             },
-                            {"name": "Fatma Boyraz"},
+                            {"name": "Fatma Boyraz", "children":[{"name":"Nuh Boyraz"},{"name":"Cemal Boyraz"}]},
                             {"name": "Elif Boyraz"},
                             {"name": "Havva Ozhan", "children":[{"name":"Sevda Ozhan"},{"name":"Kagan Ozhan", "children":[{"name":"Merve Ozhan"},{"name":"Emirhan Ozhan"},{"name":"Hakan Ozhan"}]},{"name":"Melehat Ozhan"}]}
                         ]
@@ -172,9 +172,34 @@ $( document ).ready(function() {
         d3.select(idcircle).style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
     }
 
-    function clickName(d){
-        alert("isme cift tiklayinca panel acilacak!!!");
+    function displayInfo(d){
+        var textid = "#text"+d.id;
+        var win_width = $(window).width();
+        var win_height = $(window).height();
+        var text_top_pos = $(textid).offset().top;
+        var text_left_pos = $(textid).offset().left;
+        var info_width = $('#ftree_person_popup').width();
+        var info_height = $('#ftree_person_popup').height();
+        var info_pos_top,info_pos_left;
+        info_pos_left = win_width < info_width ? 0 : (win_width < (info_width*2) + 50 ? (win_width-info_width)/2 : (text_left_pos < win_width/2 ? (text_left_pos + 50) : (text_left_pos-info_width)));
+        info_pos_top = win_height < info_height ? 0 : (win_height < (info_height*2) ? (win_height-info_height)/2 : (text_top_pos < win_height/2 ? (text_top_pos) : (text_top_pos-info_height)));
+        $('#ftree_person_popup').css('display',"block");
+        $('#ftree_person_popup').css('left',info_pos_left);
+        $('#ftree_person_popup').css('top',info_pos_top);
+        $('#ftree_person_popup').focus();
+        //info bilgiler
+        $('#ftree_person_popup_img img').attr('src', $("html").attr("site_domain") + 'webroot/img/neco.png');
+        $('#ftree_person_popup_img span').html(d.name);
+        $('#ftree_person_popup_info').html("Dogum Yili:<br/><br/>Yasadigi sehir:<br/><br/>Meslek/Okul:<br/><br/>Koy:<br/>");
     }
+
+    function closePersonInfo(){
+        $('#ftree_person_popup').css('display',"none");
+    }
+
+    $('#ftree_person_popup_close').click(function(){
+        closePersonInfo();
+    });
 
     function HoverNode(d){
         var idcircle = "#circle"+d.id;
@@ -210,14 +235,14 @@ $( document ).ready(function() {
         var nodeEnter = node.enter().append("g")
             .attr("class", "node")
             .attr("transform", function(d) { return "translate(" + source.x0 + "," + source.y0 + ")"; })
-            .on("click", click)
             .on("mouseover", HoverNode)
             .on("mouseout", UnHoverNode);
 
         nodeEnter.append("circle")
             .attr("r", 1e-6)
             .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; })
-            .attr("id",function(d){ return "circle"+d.id; });
+            .attr("id",function(d){ return "circle"+d.id; })
+            .on("click", click);
 
         nodeEnter.append("text")
             .attr("y", function(d) { return d.children || d._children ? -18 : 18; })
@@ -225,7 +250,8 @@ $( document ).ready(function() {
             .attr("text-anchor", "middle")
             .text(function(d) { return d.name; })
             .style("fill-opacity", 1e-6)
-            .on("dblclick", clickName);
+            .attr("id",function(d){ return "text"+d.id; })
+            .on("click", displayInfo);
 
         // Transition nodes to their new position.
         var nodeUpdate = node.transition()
