@@ -9,7 +9,13 @@
 
         public static function run($uri){
             self::$router = new Router($uri);
-            //self::$db = DB::getInstance();//test icin commentlendi tekrar acilacak
+	    try{
+            	self::$db = DB::getInstance();//test icin commentlendi tekrar acilacak
+	    }
+	    catch(Exception $e){
+	        echo "<p/><p/><p/>";
+	        print_r($e);
+	    }
             Lang::load(self::$router->getLanguage());
 
             $controller_class = ucfirst(self::$router->getController()).'Controller';
