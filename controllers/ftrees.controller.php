@@ -8,5 +8,10 @@ class FtreesController extends Controller{
     public function index(){
 
     }
+
+    public function GetFtreeByRoot(){
+        $res = $this->model->GetFtreeByRoot();
+        return $res;
+    }
 }
 ?>

@@ -1,0 +1,55 @@
+/*
+"CREATE TABLE `person` (
+  `SEX` varchar(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `NAME` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `SURNAME` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `BIRTH_DATE` date DEFAULT NULL,
+  `DATE_OF_DEATH` date DEFAULT NULL,
+  `USER_ID` int(11) DEFAULT NULL,
+  `PHOTO_URL` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `STATUS` varchar(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `HISTORY` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ALIAS` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci"
+
+"CREATE TABLE `family_tree` (
+  `PERSON_ID` int(32) DEFAULT NULL,
+  `FATHER` int(32) DEFAULT NULL,
+  `MOTHER` int(32) DEFAULT NULL,
+  `IS_ROOT` varchar(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci"
+*/
+
+/*
+insert into person (ALIAS,NAME,SURNAME,SEX,STATUS) values('BILINMEYEN_KOK','BILINMEYEN','BOYRAZ','E','A');--1
+insert into person (ALIAS,NAME,SURNAME,SEX,STATUS) values('MUSTAFA AGA','MUSTAFA','BOYRAZ','E','A');--2
+insert into person (ALIAS,NAME,SURNAME,SEX,STATUS) values('MUDUR AHMET EFENDI','AHMET','BOYRAZ','E','A');--3
+insert into person (ALIAS,NAME,SURNAME,SEX,STATUS) values('ALI BE','ALI','BOYRAZ','E','A');--4
+insert into person (ALIAS,NAME,SURNAME,SEX,STATUS) values('KUCUK AGA','MUSTAFA','BOYRAZ','E','A');--5
+insert into person (ALIAS,NAME,SURNAME,SEX,STATUS) values('ESO HATUN','AYSE','BOYRAZ','K','A');--6
+insert into person (ALIAS,NAME,SURNAME,SEX,STATUS) values('FATIY','FATMA','BOYRAZ','K','A');--7
+insert into person (ALIAS,NAME,SURNAME,SEX,STATUS) values('ELIF HATIN','ELIF','BOYRAZ','K','A');--8
+insert into person (ALIAS,NAME,SURNAME,SEX,STATUS) values('YUSUP HOCA','YUSUF','BOYRAZ','E','A');--9
+insert into person (ALIAS,NAME,SURNAME,SEX,STATUS) values('HAVEY','HAVVA','OZHAN','K','A');--10
+insert into person (ALIAS,NAME,SURNAME,SEX,STATUS) values('HAVEY','MUHARREM','BOYRAZ','E','A');--11
+insert into person (ALIAS,NAME,SURNAME,SEX,STATUS) values('HAVEY','MAHMUT','BOYRAZ','E','A');--12
+insert into person (ALIAS,NAME,SURNAME,SEX,STATUS) values('HAVEY','SEYFETTIN','BOYRAZ','E','A');--13
+insert into person (ALIAS,NAME,SURNAME,SEX,STATUS) values('HAVEY','FATMA','BOYRAZ','K','A');--14
+
+insert into family_tree(IS_ROOT,PERSON_ID,FATHER,MOTHER) values('Y',1,null,null);
+insert into family_tree(IS_ROOT,PERSON_ID,FATHER,MOTHER) values('N',2,1,null);
+insert into family_tree(IS_ROOT,PERSON_ID,FATHER,MOTHER) values('N',3,1,null);
+insert into family_tree(IS_ROOT,PERSON_ID,FATHER,MOTHER) values('N',4,2,null);
+insert into family_tree(IS_ROOT,PERSON_ID,FATHER,MOTHER) values('N',5,2,null);
+insert into family_tree(IS_ROOT,PERSON_ID,FATHER,MOTHER) values('N',6,4,null);
+insert into family_tree(IS_ROOT,PERSON_ID,FATHER,MOTHER) values('N',7,4,null);
+insert into family_tree(IS_ROOT,PERSON_ID,FATHER,MOTHER) values('N',8,4,null);
+insert into family_tree(IS_ROOT,PERSON_ID,FATHER,MOTHER) values('N',9,4,null);
+insert into family_tree(IS_ROOT,PERSON_ID,FATHER,MOTHER) values('N',10,4,null);
+insert into family_tree(IS_ROOT,PERSON_ID,FATHER,MOTHER) values('N',11,4,null);
+insert into family_tree(IS_ROOT,PERSON_ID,FATHER,MOTHER) values('N',12,5,null);
+insert into family_tree(IS_ROOT,PERSON_ID,FATHER,MOTHER) values('N',13,5,null);
+insert into family_tree(IS_ROOT,PERSON_ID,FATHER,MOTHER) values('N',14,5,null);
+*/

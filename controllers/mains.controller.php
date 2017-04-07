@@ -6,7 +6,7 @@ class MainsController extends Controller{
     }
 
     public function index(){
-        
+        $this->data['testdata'] = $this->model->getTestData();
     }
 }
 ?>

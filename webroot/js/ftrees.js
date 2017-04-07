@@ -1,58 +1,16 @@
-var root = 
-    {
-        "name": "Bilinmeyen Boyraz",
-        "children":[
-            {
-                "name": "Mustafa Boyraz",
-                "children":[
-                    {
-                        "name": "Ali Boyraz",
-                        "children": [
-                            {
-                                "name": "Ayşe Boyraz",
-                                "children": [
-                                    {
-                                        "name": "Mehmet Boyraz",
-                                        "children":[
-                                            {"name": "Ebru Boyraz"},
-                                            {"name": "Ersin Boyraz", "children":[{"name":"Azra Boyraz"},{"name":"Arda Boyraz"}]}
-                                        ]
-                                    },
-                                    {"name": "Tahsin Boyraz"},
-                                    {"name": "I. Hakki Boyraz"},
-                                    {"name": "Ilhan Boyraz"}
-                                ]
-                            },
-                            {
-                                "name": "Yusuf Boyraz",
-                                "children": [
-                                    {"name": "Ozkan Boyraz", "children":[{"name":"Azra Boyraz"},{"name":"Ayse Boyraz"},{"name":"Melike Boyraz"}]},
-                                    {"name": "Ozdal Boyraz"},
-                                    {"name": "Mustafa Boyraz"},
-                                    {"name": "Abuseyf Boyraz"},
-                                    {"name": "Yildiz Ozhan", "children":[{"name":"Merve Ozhan"},{"name":"Emirhan Ozhan"},{"name":"Hakan Ozhan"}]},
-                                    {"name": "Necip Fazil Boyraz"}
-                                ]
-                            },
-                            {"name": "Fatma Boyraz", "children":[{"name":"Nuh Boyraz"},{"name":"Cemal Boyraz"}]},
-                            {"name": "Elif Boyraz"},
-                            {"name": "Havva Ozhan", "children":[{"name":"Sevda Ozhan"},{"name":"Kagan Ozhan", "children":[{"name":"Merve Ozhan"},{"name":"Emirhan Ozhan"},{"name":"Hakan Ozhan"}]},{"name":"Melehat Ozhan"}]}
-                        ]
-                    },
-                    {
-                        "name":"Kucuk Aga",
-                        "children": [
-                            {"name": "Mahmut Boyraz", "children":[{"name":"Emine Boyraz"},{"name":"Mustafa Boyraz"},{"name":"Nuray Boyraz"},{"name":"Nurhan Boyraz"},{"name":"Munevver Boyraz"},{"name":"Hamit Boyraz"},{"name":"Sait Boyraz"},{"name":"Dilara Boyraz"}]},
-                            {"name": "Seyfettin Boyraz", "children":[{"name":"Mehmet Boyraz"},{"name":"Kahraman Boyraz"},{"name":"Nursel Boyraz"},{"name":"Mustafa Boyraz"}]}
-                        ]
-                    }
-                ]
-            },
-            {"name": "Mudur Ahmet Efendi"}
-        ]
-    };
-
 $( document ).ready(function() {
+    var root;
+    $.ajax({
+        type:"post",
+        url: $("html").attr("ajax_prelink") + "GetFtreeByRoot/",
+        data:{ method_type: "ajax" },//data hata veriyor
+        dataType:"json",
+        async: false,
+        success:function(res){ 
+            root = res; 
+        }
+    });
+
     var margin = {top: 60, right: 20, bottom: 40, left: 20},
     width,
     height,
