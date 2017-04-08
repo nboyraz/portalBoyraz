@@ -9,13 +9,7 @@
 
         public static function run($uri){
             self::$router = new Router($uri);
-	    try{
-            	self::$db = DB::getInstance();//test icin commentlendi tekrar acilacak
-	    }
-	    catch(Exception $e){
-	        echo "<p/><p/><p/>";
-	        print_r($e);
-	    }
+            self::$db = DB::getInstance();//test icin commentlendi tekrar acilacak
             Lang::load(self::$router->getLanguage());
 
             $controller_class = ucfirst(self::$router->getController()).'Controller';
@@ -40,7 +34,7 @@
 
         public static function routeAjaxCall($uri){
             self::$router = new Router($uri);
-            //self::$db = DB::getInstance();//test icin commentlendi tekrar acilacak
+            self::$db = DB::getInstance();//test icin commentlendi tekrar acilacak
             Lang::load(self::$router->getLanguage());
 
             $controller_class = ucfirst(self::$router->getController()).'Controller';
