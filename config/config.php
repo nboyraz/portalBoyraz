@@ -13,8 +13,9 @@
     Config::set('view_mode_pages', array('ftrees'));
 
     //database connection
-    Config::set('db.host', 'localhost');
-    Config::set('db.user', 'root');
-    Config::set('db.password', '');
-    Config::set('db.db_name', 'boyrazdb');
+    //Config::set('db.host', 'mysql8.db4free.net:3307');
+    Config::set('db.host', '85.10.205.173:3307');//mysql8.db4free.net:3307
+    Config::set('db.user', 'lord_strider');
+    Config::set('db.password', '20122001');
+    Config::set('db.db_name', 'nfb_pb');
 ?>
