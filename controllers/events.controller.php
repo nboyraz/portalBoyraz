@@ -6,15 +6,14 @@ class EventsController extends Controller{
     }
 
     public function index(){
-        
-    }
-
-    public function getAjaxDenemeResult(){
-        $resArray = array();
-        $resArray += array("key1"=>"val1");
-        $resArray += array("key2"=>"val2");
-        $resArray += array("key3"=>"val3");
-        return $resArray;
+        $PageParams = App::getRouter()->getParams();
+        $pageNum = 1;
+        if(isset($PageParams) && count($PageParams) > 0){
+            $pageNum = $PageParams[0];
+        }
+        $pageSize = Config::get('event_page_size');
+        $this->data['last_events'] = $this->model->GetLatestEvents($pageNum,$pageSize);
+        $this->data['pageNumber'] = $pageNum;
     }
 }
 ?>

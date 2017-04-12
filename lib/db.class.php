@@ -6,8 +6,8 @@ class DB{
     public function __construct($host,$user,$password,$db_name){
         $this->connection = new mysqli($host,$user,$password,$db_name);
         if(mysqli_connect_error()){
-            //trigger_error("Failed to conencto to MySQL: " . mysql_connect_error(),E_USER_ERROR);
-            echo mysqli_connect_error()."<br/>------<br/>".mysqli_connect_errno()."<br/>";
+            trigger_error("Failed to conencto to MySQL: " . mysql_connect_error(),E_USER_ERROR);
+            //echo mysqli_connect_error()."<br/>------<br/>".mysqli_connect_errno()."<br/>";
         }
     }
 

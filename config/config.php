@@ -11,6 +11,7 @@
     Config::set('default_controller', 'welcome');
     Config::set('default_action', 'index');
     Config::set('view_mode_pages', array('ftrees'));
+    Config::set('event_page_size', 5);
 
     //database connection
     //Config::set('db.host', 'mysql8.db4free.net:3307');

@@ -12,14 +12,24 @@
   `ALIAS` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci"
+)"
 
 "CREATE TABLE `family_tree` (
   `PERSON_ID` int(32) DEFAULT NULL,
   `FATHER` int(32) DEFAULT NULL,
   `MOTHER` int(32) DEFAULT NULL,
   `IS_ROOT` varchar(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci"
+)"
+
+"CREATE TABLE `events` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `EVENT_TYPE` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NOT NULL,
+  `CREATOR_USER` int(11) DEFAULT NULL,
+  `PUBLISHER_INFO` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `PUBLISH_DATE` date DEFAULT NULL,
+  `CONTENT` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `FULL_CONTENT` varchar(1000) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+)"
 */
 
 /*
