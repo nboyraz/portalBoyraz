@@ -6,7 +6,7 @@
                     ?>
                     <div class="col-md-12 event_div">
                         <span class="EventHeader">
-                            <a target="_blank" href="<?php echo Config::get('site_domain').'events/content/'.$data['last_events'][$i]->EventId; ?>"><?php echo $data['last_events'][$i]->PublisherInfo; ?></a>
+                            <a href="<?php echo Config::get('site_domain').'events/content/'.$data['last_events'][$i]->EventId; ?>"><?php echo $data['last_events'][$i]->PublisherInfo; ?></a>
                         </span><br/>
                         <?php echo $data['last_events'][$i]->Content; ?><br/>
                         <span class="EventFooter">
@@ -22,7 +22,7 @@
             if(count($data['last_events']) > Config::get('event_page_size') || $data['pageNumber'] > 1){
                     if($data['pageNumber'] > 1){
                         echo '<div class="col-md-1">';
-                        echo '<button id="eventsPreviousPage" class="nextPage"> << </button>';    
+                        echo '<button id="eventsPreviousPage" class="pagingButton"> << </button>';    
                         echo "</div>";
                         echo '<div class="col-md-10"></div>';
                     }
@@ -30,7 +30,7 @@
                         echo '<div class="col-md-11"></div>';
                     }
                     if(count($data['last_events']) > Config::get('event_page_size')){
-                        echo '<div class="col-md-1"><button id="eventsNextPage" class="nextPage"> >> </button></div>';
+                        echo '<div class="col-md-1"><button id="eventsNextPage" class="pagingButton"> >> </button></div>';
                     }
                     else{
                         echo '<div class="col-md-1"></div>';

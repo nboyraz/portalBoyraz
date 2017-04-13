@@ -13,8 +13,8 @@
     color:#3C484D;
     font-weight: bold;
 }
-.nextPage{
-    border-radius: 5px;
-    width: 20px;
+.EventContentDiv{
+    margin-bottom: 10px;
     font-weight: bold;
+    font-size: 15px;
 }

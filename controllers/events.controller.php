@@ -15,5 +15,9 @@ class EventsController extends Controller{
         $this->data['last_events'] = $this->model->GetLatestEvents($pageNum,$pageSize);
         $this->data['pageNumber'] = $pageNum;
     }
+
+    public function content(){
+        
+    }
 }
 ?>

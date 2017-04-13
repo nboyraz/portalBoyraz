@@ -76,4 +76,12 @@ form{
 .footertext {
   color: #ffffff;
 }
+.pagingButton{
+    border-radius: 6px;
+    border: none;
+    width: 35px;
+    font-weight: bold;
+    background-color: #14181A;
+    color:white;
+}
 
