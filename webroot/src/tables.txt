@@ -1,0 +1,50 @@
+/*
+"CREATE TABLE `person` (
+  `SEX` varchar(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `NAME` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `SURNAME` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `BIRTH_DATE` date DEFAULT NULL,
+  `DATE_OF_DEATH` date DEFAULT NULL,
+  `USER_ID` int(11) DEFAULT NULL,
+  `PHOTO_URL` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `STATUS` varchar(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `HISTORY` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ALIAS` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`ID`)
+)"
+
+"CREATE TABLE `family_tree` (
+  `PERSON_ID` int(32) DEFAULT NULL,
+  `FATHER` int(32) DEFAULT NULL,
+  `MOTHER` int(32) DEFAULT NULL,
+  `IS_ROOT` varchar(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+)"
+
+"CREATE TABLE `events` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `EVENT_TYPE` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NOT NULL,
+  `CREATOR_USER` int(11) DEFAULT NULL,
+  `PUBLISHER_INFO` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `PUBLISH_DATE` date DEFAULT NULL,
+  `CONTENT` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `FULL_CONTENT` varchar(1000) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+)"
+
+create table `messages`
+(
+	ID int(11) not null AUTO_INCREMENT,
+    NAME varchar(50),
+    EMAIL varchar(50),
+    MESSAGE varchar(500),
+    IP varchar(20)
+)
+
+create table `page_menus`
+(
+  MENU_TYPE varchar(20)
+  MENU_ORDER int(11),
+  MENU_CONTENT varchar(1000),
+  MENU_LINK varchar(250)
+)
+*/

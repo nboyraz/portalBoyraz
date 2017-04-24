@@ -23,5 +23,21 @@ class Event extends Model{
         }
         return $res;
     }
+
+    public function GetEventContent($eventId){
+        $event = new EventItem();
+        $select = "select * from `events` where ID = ".$eventId." limit 1";
+        $result = $this->db->query($select);
+        if(count($result)>0){
+            $event->EventId = $result[0]["ID"];
+            $event->EventType = $result[0]["EVENT_TYPE"];
+            $event->CreatorUser = $result[0]["CREATOR_USER"];
+            $event->PublisherInfo = $result[0]["PUBLISHER_INFO"];
+            $event->PublishDate = $result[0]["PUBLISH_DATE"];
+            $event->Content = $result[0]["CONTENT"];
+            $event->FullContent = $result[0]["FULL_CONTENT"];
+        }
+        return $event;
+    }
 }
 ?>

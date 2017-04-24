@@ -17,7 +17,12 @@ class EventsController extends Controller{
     }
 
     public function content(){
-        
+        $PageParams = App::getRouter()->getParams();
+        $eventId = 0;
+        if(isset($PageParams) && count($PageParams) > 0){
+            $eventId = $PageParams[0];
+        }
+        $this->data['event_content'] = $this->model->GetEventContent($eventId);
     }
 }
 ?>

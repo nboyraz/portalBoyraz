@@ -1,9 +1,10 @@
 <div class="row">
     <div class="col-md-12">
-        <div class="EventContentDiv">Ilan : </div>
-        <div class="EventContentDiv">Ilan Tarihi : </div>
-        <div class="EventContentDiv">Ilan Icerik : </div>
-        <div class="EventContentDiv">Ilan Sahibi : </div>
+        <div class="EventContentDiv">Ilan : <span class="EventContentDivText"><?php echo $data['event_content']->PublisherInfo; ?></span></div>
+        <div class="EventContentDiv"><span class="EventContentDivText"><?php echo $data['event_content']->Content; ?></span></div>
+        <div class="EventContentDiv">Ilan Icerik : <span class="EventContentDivText"><?php echo $data['event_content']->FullContent; ?></span></div>
+        <div class="EventContentDiv">Ilan Tarihi : <span class="EventContentDivText"><?php echo $data['event_content']->PublishDate; ?></span></div>        
+        <div class="EventContentDiv">Ilan Sahibi : <span class="EventContentDivText"><?php echo $data['event_content']->CreatorUser; ?></span></div>
         <br/>
     </div>
 </div>

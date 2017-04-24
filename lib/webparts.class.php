@@ -30,7 +30,7 @@
             <?php return  ob_get_clean();
         }
 
-        public static function getLeftSiteMenu(){
+        public static function getLeftSiteMenu($leftMenu){
             ob_start();  ?>
             
                         <div id="LeftSidebarContainer">
@@ -38,11 +38,13 @@
                                 <p/>
                                 <h3 style="color: white;">Güncel Başlıklar</h3>
                                 <ul class="nav nav-tabs nav-stacked">
-                                <li><a href='#'>portalBoyraz Açıldı!!!</a></li>
-                                <li><a href='#'>Nuh Boyraz'dan "Almanak" Çalışması</a></li>
-                                <li><a href='#'>Duyuru İlan Bölümünde Sizler İçin Ne Var?</a></li>
-                                <li><a href='#'>Kimle Nasıl Akrabayım? Soyağacı Tam Size Göre</a></li>
-                                <li><a href='#'>Yazılımla İlgilenen Boyraz Bireyleri Buraya...</a></li>
+                                <?php
+                                    if(isset($leftMenu) && count($leftMenu) > 0){
+                                        for($i=0;$i<count($leftMenu);$i++){
+                                            echo "<li><a target='_blank' href='http://www.google.com.tr'>".$leftMenu[$i]->MenuContent."</a></li>";
+                                        }
+                                    }
+                                ?>
                                 </ul>
                             </div>
                         </div>
@@ -50,17 +52,19 @@
             <?php return  ob_get_clean();
         }
 
-        public static function getRigthSiteBar(){
+        public static function getRigthSiteBar($rightMenu){
             ob_start(); ?>
                         <div id="RightSidebarContainer">
                             <div class='col-sm-2 sidebar mainSideBars' id="RightSidebar">
                                 <h3>Duyuru/Haber/İlan</h3>
                                 <ul class="nav nav-tabs nav-stacked">
-                                <li><a href='#' class="RightSidebarItem">Ahmet Selim Boyraz Evleniyor</a></li>
-                                <li><a href='#' class="RightSidebarItem">Tahsin Boyraz'dan Satılık 3+1 Ev</a></li>
-                                <li><a href='#' class="RightSidebarItem">İstanbul'da Erkek Öğrenci İçin Ev Arkadaşı Aranıyor</a></li>
-                                <li><a href='#' class="RightSidebarItem">Temiz Scoda Octavia!!!</a></li>
-                                <li><a href='#' class="RightSidebarItem">Guvenlik Elemani Araniyor</a></li>
+                                <?php
+                                    if(isset($rightMenu) && count($rightMenu) > 0){
+                                        for($i=0;$i<count($rightMenu);$i++){
+                                            echo '<li><a target="_blank" href="http://www.google.com.tr" class="RightSidebarItem">'.$rightMenu[$i]->MenuContent.'</a></li>';
+                                        }
+                                    }
+                                ?>
                                 </ul>
                             </div>  
                         </div>            
@@ -107,12 +111,13 @@
             <?php return  ob_get_clean();
         }
 
-        public static function getStandartContent($content){
+        public static function getStandartContent($data){
+            $content = $data['content'];
             ob_start(); ?>
             <div id="Content">
                 <div class="container">
                     <div class="row">
-                        <?php echo Webparts::getLeftSiteMenu(); ?>
+                        <?php echo Webparts::getLeftSiteMenu(isset($data['leftMenu']) ? $data['leftMenu'] : null); ?>
                         <div class="col-sm-7 main">
                             <div class="starter-template">
                                 <?php if(Session::hasFlash()){ ?>
@@ -123,14 +128,15 @@
                                 <?php echo $content; ?>
                             </div>
                         </div> 
-                        <?php echo Webparts::getRigthSiteBar(); ?>
+                        <?php echo Webparts::getRigthSiteBar(isset($data['rightMenu']) ? $data['rightMenu'] : null); ?>
                     </div> 
                 </div> 
             </div>
             <?php return  ob_get_clean();
         }
 
-        public static function getLargeContent($content){
+        public static function getLargeContent($data){
+            $content = $data['content'];
             ob_start(); ?>
             <div id="Content">
                 <div class="container-fluid">
@@ -151,7 +157,8 @@
             <?php return  ob_get_clean();
         }
 
-        public static function getFullContent($content){
+        public static function getFullContent($data){
+            $content = $data['content'];
             echo $content;
         }
     }

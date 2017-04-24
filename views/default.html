@@ -18,14 +18,14 @@
             <?php
                 echo Webparts::getStandartHeader();
                 if(App::getRouter()->getViewMode() == 'full'){
-                    echo Webparts::getFullContent($data['content']);
+                    echo Webparts::getFullContent($data);
                 }
                 else{
                     if(App::getRouter()->getViewMode() == 'large'){
-                        echo Webparts::getLargeContent($data['content']);
+                        echo Webparts::getLargeContent($data);
                     }
                     else{
-                        echo Webparts::getStandartContent($data['content']);
+                        echo Webparts::getStandartContent($data);
                     }
                     echo Webparts::getStandartFooter();
                 }

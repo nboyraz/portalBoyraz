@@ -11,7 +11,7 @@
         protected $route;
         protected $method_prefix;
         protected $language;
-        protected $view_mode;
+        protected $view_mode = "standart";
 
         public function getUri(){
             return $this->uri;
