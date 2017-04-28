@@ -47,4 +47,23 @@ create table `page_menus`
   MENU_CONTENT varchar(1000),
   MENU_LINK varchar(250)
 )
+
+create table `photo_folders`
+(
+  FOLDER_NAME VARCHAR(100),
+  FOLDER_OWNER INT(11),
+  FOLDER_CREATORS VARCHAR(250),
+  CREATED_DATE DATE,
+  LAST_UPDATE_DATE DATE,
+  FOLDER_ID varchar(30)
+)
+
+create table `photos`
+(
+  FOLDER_ID varchar(30),
+  LINK varchar(250),
+  PREVIEW_LINK VARCHAR(250),
+  DESCRIPTION varchar(500),
+  CREATE_DATE date
+)
 */
